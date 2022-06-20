@@ -1,10 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class Country {
+import 'package:hive/hive.dart';
+
+part 'country_model.g.dart';
+
+@HiveType(typeId: 0)
+class Country extends HiveObject {
+  @HiveField(0)
   final int id;
+
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   final String? flag;
+
+  @HiveField(3)
   final String? prefix;
   Country({
     required this.id,

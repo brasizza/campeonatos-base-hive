@@ -1,7 +1,7 @@
 import '../../../core/log/developer_log.dart';
 import '../../../data/models/championship_model.dart';
 import '../../../data/models/competition_model.dart';
-import '../../../data/services/championship_service.dart';
+import '../../../data/services/championship/championship_service.dart';
 
 class LeaguesController {
   late ChampionshipService _service;
@@ -16,7 +16,7 @@ class LeaguesController {
     Developer.logInstance(this);
   }
 
-  factory LeaguesController.instance({required ChampionshipService service}) {
+  factory LeaguesController.init({required ChampionshipService service}) {
     _instance ??= LeaguesController._(service: service);
     return _instance!;
   }

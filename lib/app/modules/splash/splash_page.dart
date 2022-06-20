@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+
 import 'controller/splash_controller.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  final SplashController controller;
+  const SplashPage({Key? key, required this.controller}) : super(key: key);
 
   @override
   State<SplashPage> createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
-  final controller = SplashController();
-
   @override
   void initState() {
     super.initState();
-    controller.getData().then((complete) {
+    widget.controller.getData().then((complete) {
       if (complete == true) {
         Navigator.of(context).popAndPushNamed('/home');
       }

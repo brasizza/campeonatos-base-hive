@@ -1,12 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:hive_flutter/hive_flutter.dart';
+
 import 'country_model.dart';
 
-class Competition {
+part 'competition_model.g.dart';
+
+@HiveType(typeId: 1)
+class Competition extends HiveObject {
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String link;
+  @HiveField(2)
   final String name;
+  @HiveField(3)
   final Country country;
   Competition({
     required this.id,

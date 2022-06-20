@@ -1,4 +1,4 @@
-import '../exports/competiton.dart';
+import 'competiton_export.dart';
 
 class CompetitionRepositoryImpl implements CompetitionRepository {
   late RestClient _restClient;
@@ -39,7 +39,15 @@ class CompetitionRepositoryImpl implements CompetitionRepository {
     _restClient = restClient;
     Developer.logInstance(this);
   }
-  factory CompetitionRepositoryImpl.instance({required RestClient restClient}) {
+
+  static CompetitionRepositoryImpl get instance {
+    if (_instance == null) {
+      throw Exception();
+    }
+    return _instance!;
+  }
+
+  factory CompetitionRepositoryImpl.init({required RestClient restClient}) {
     _instance ??= CompetitionRepositoryImpl._(restClient: restClient);
     return _instance!;
   }

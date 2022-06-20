@@ -1,4 +1,4 @@
-import '../exports/championship.dart';
+import 'championship_export.dart';
 
 class ChampionshipRepositoryImpl implements ChampionshipRepository {
   late RestClient _restClient;
@@ -35,7 +35,15 @@ class ChampionshipRepositoryImpl implements ChampionshipRepository {
     _restClient = restClient;
     Developer.logInstance(this);
   }
-  factory ChampionshipRepositoryImpl.instance({required RestClient restClient}) {
+
+  static ChampionshipRepositoryImpl get instance {
+    if (_instance == null) {
+      throw Exception();
+    }
+    return _instance!;
+  }
+
+  factory ChampionshipRepositoryImpl.init({required RestClient restClient}) {
     _instance ??= ChampionshipRepositoryImpl._(restClient: restClient);
     return _instance!;
   }
