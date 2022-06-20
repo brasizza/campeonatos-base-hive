@@ -4,7 +4,7 @@ class ChampionshipRepositoryImpl implements ChampionshipRepository {
   late RestClient _restClient;
 
   @override
-  Future<Championship?> getScore(String url) async {
+  Future<Championship?> getScore(String url, {required bool refresh}) async {
     try {
       final response = await _restClient.get((url));
       if (response.statusCode != 200) {

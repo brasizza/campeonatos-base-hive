@@ -1,5 +1,5 @@
-import '../../../core/routes/routes.dart';
-import 'splash_export.dart';
+import '../../../../core/routes/routes.dart';
+import '../../splash/splash_export.dart';
 
 class SplashRepositoryHive implements SplashRepository {
   static SplashRepositoryHive? _instance;
@@ -26,10 +26,12 @@ class SplashRepositoryHive implements SplashRepository {
   @override
   Future<void> populateCompetitions() async {
     if (_database != null) {
-      final competitionService = CompetitionServiceImpl.instance;
+      final competitionService = CompetitionServiceImpl.init(repository: CompetitionRepositoryImpl.instance);
       final competitions = await competitionService.getCompetitions();
-      await _database!.openDatabase('project');
-      await _database!.populateCompetitions(competitions);
+      if (competitions != null) {
+        await _database!.openDatabase('project');
+        await _database!.populateCompetitions(competitions);
+      }
     }
   }
 }

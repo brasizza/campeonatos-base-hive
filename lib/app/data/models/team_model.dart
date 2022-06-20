@@ -1,16 +1,32 @@
 import 'dart:convert';
 
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'team_model.g.dart';
+
+@HiveType(typeId: 3)
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Team {
+  @HiveField(0)
   final String team;
+  @HiveField(1)
   final String teamSlug;
+  @HiveField(2)
   final String? teamId;
+  @HiveField(3)
   final String? teamScId;
+  @HiveField(4)
   final int? index;
+  @HiveField(5)
   final int? matches;
+  @HiveField(6)
   final int? points;
+  @HiveField(7)
   final int? wins;
+  @HiveField(8)
   final int? draws;
+  @HiveField(9)
   final int? loses;
   Team({
     required this.team,

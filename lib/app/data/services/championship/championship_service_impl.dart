@@ -3,16 +3,15 @@ import '../export/championship.dart';
 class ChampionshipServiceImpl implements ChampionshipService {
   String baseUrl = 'https://www.scorebat.com/api/competition/2/';
   @override
-  Future<Championship?> getScore(String? link) async {
+  Future<Championship?> getScore(String? link, {bool refresh = false}) async {
     String url = baseUrl + (link ?? '');
-    return await _repository.getScore(url);
+    return await _repository.getScore(url, refresh: refresh);
   }
 
   static ChampionshipServiceImpl? _instance;
-  late ChampionshipRepository _repository;
+  static late ChampionshipRepository _repository;
 
   ChampionshipServiceImpl._({required ChampionshipRepository repository}) {
-    _repository = repository;
     Developer.logInstance(this);
   }
 
@@ -23,8 +22,13 @@ class ChampionshipServiceImpl implements ChampionshipService {
     return _instance!;
   }
 
-  factory ChampionshipServiceImpl.init({required ChampionshipRepository repository}) {
-    _instance ??= ChampionshipServiceImpl._(repository: repository);
+  factory ChampionshipServiceImpl.init({required ChampionshipRepository repository, bool singleton = true}) {
+    _repository = repository;
+    if (singleton == true) {
+      _instance ??= ChampionshipServiceImpl._(repository: repository);
+    } else {
+      _instance = ChampionshipServiceImpl._(repository: repository);
+    }
     return _instance!;
   }
 }

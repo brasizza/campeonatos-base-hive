@@ -2,21 +2,26 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+import '../../core/routes/routes.dart';
 import 'game.dart';
 import 'team_model.dart';
 
-class Championship {
+part 'championship_model.g.dart';
+
+@HiveType(typeId: 4)
+class Championship extends HiveObject {
+  @HiveField(0)
   final List<Team> teams;
-
+  @HiveField(1)
   final List<Game>? matches;
-
+  @HiveField(2)
   final List<Game>? futureMaches;
-  Championship({
-    required this.teams,
-    required this.matches,
-    required this.futureMaches,
-  });
+
+  @HiveField(3)
+  Competition? competition;
+  Championship({required this.teams, required this.matches, required this.futureMaches, this.competition});
 
   Championship copyWith({
     List<Team>? teams,

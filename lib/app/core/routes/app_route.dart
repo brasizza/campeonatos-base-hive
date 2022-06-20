@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../data/repositories/database/championship/championship_repository_impl_database.dart';
 import 'routes.dart';
 
 class AppRoute extends Route {
@@ -11,10 +12,12 @@ class AppRoute extends Route {
       case '/':
         return MaterialPageRoute(
           builder: (context) {
-            CompetitionServiceImpl.init(
-              repository: CompetitionRepositoryImpl.init(restClient: rest),
-            );
+            CompetitionRepositoryImpl.init(restClient: rest);
+            // CompetitionServiceImpl.init(
+            //   repository: CompetitionRepositoryImpl.init(restClient: rest),
+            // );
             final SplashRepository repository = SplashRepositoryHive.init(database: database);
+            // final SplashRepository repository = SplashRepositoryImpl.init(restClient: rest);
             final SplashService service = SplashServiceImpl.init(repository: repository);
             final controller = SplashController.init(service: service);
             return SplashPage(controller: controller);
@@ -45,14 +48,15 @@ class AppRoute extends Route {
           },
         );
 
-      case '/leagues':
+      case '/matches':
         final competiton = settings.arguments as Competition;
-        final repository = ChampionshipRepositoryImpl.init(restClient: rest);
-        final service = ChampionshipServiceImpl.init(repository: repository);
-        final controller = LeaguesController.init(service: service)..competition = competiton;
+        ChampionshipServiceImpl.init(repository: ChampionshipRepositoryImpl.init(restClient: rest));
+        final service = ChampionshipServiceImpl.init(repository: ChampionshipRepositoryDatabase.init(database: database));
+
+        final controller = MatchesController.init(service: service)..competition = competiton;
         return MaterialPageRoute(
           builder: (context) {
-            return LeaguesPage(
+            return MatchesPage(
               controller: controller,
             );
           },

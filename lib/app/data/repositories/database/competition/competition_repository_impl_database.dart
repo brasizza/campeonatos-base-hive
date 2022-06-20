@@ -1,5 +1,5 @@
-import '../../../database/database.dart';
-import '../rest/competition/competiton_export.dart';
+import '../../../../database/database.dart';
+import '../../rest/competition/competiton_export.dart';
 
 class CompetitionRepositoryDatabase implements CompetitionRepository {
   late Database _database;

@@ -1,5 +1,8 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../../data/models/championship_model.dart';
+import '../../data/models/game.dart';
+import '../../data/models/team_model.dart';
 import '../../data/repositories/rest/competition/competiton_export.dart';
 import '../database.dart';
 
@@ -8,10 +11,6 @@ class DatabaseHive implements Database {
 
   DatabaseHive._() {
     Developer.logInstance(this);
-    Hive.deleteFromDisk();
-    Hive.initFlutter();
-    Hive.registerAdapter(CountryAdapter());
-    Hive.registerAdapter(CompetitionAdapter());
   }
 
   factory DatabaseHive.init() {
@@ -22,7 +21,17 @@ class DatabaseHive implements Database {
 
   @override
   Future openDatabase(String path) async {
+    await Hive.initFlutter();
+    // await Hive.deleteFromDisk();
+    // await Hive.deleteBoxFromDisk('competition');
+    // await Hive.deleteBoxFromDisk('championship');
+    Hive.registerAdapter(CountryAdapter());
+    Hive.registerAdapter(CompetitionAdapter());
+    Hive.registerAdapter(GameAdapter());
+    Hive.registerAdapter(TeamAdapter());
+    Hive.registerAdapter(ChampionshipAdapter());
     await Hive.openBox<Competition>('competition');
+    await Hive.openBox<Championship>('championship');
   }
 
   @override
@@ -37,7 +46,16 @@ class DatabaseHive implements Database {
   }
 
   @override
-  Future<dynamic> getData<T>(String query) async {
-    return Hive.box<T>(query).values;
+  Future<List> getData<T>(String query) async {
+    return Hive.box<T>(query).values.toList();
+  }
+
+  @override
+  Future insert<T>({String tableName = 'default', T? value}) async {
+    if (value != null) {
+      Hive.openBox<T>(tableName).then((box) {
+        box.add(value);
+      });
+    }
   }
 }

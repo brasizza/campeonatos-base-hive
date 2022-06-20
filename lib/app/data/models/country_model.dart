@@ -52,7 +52,7 @@ class Country extends HiveObject {
       id: map['id'] as int,
       name: map['name'] as String,
       flag: map['flag'] != null ? map['flag'] as String : null,
-      prefix: map['bc'] != null ? map['flag'] as String : null,
+      prefix: map['bc'] != null ? map['bc'] as String : null,
     );
   }
 

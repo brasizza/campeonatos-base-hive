@@ -13,7 +13,7 @@ class ListCompetition extends StatelessWidget {
       itemBuilder: ((context, index) {
         final competition = competitions[index];
         return InkWell(
-          onTap: () => Navigator.pushNamed(context, '/leagues', arguments: competition),
+          onTap: () => Navigator.pushNamed(context, '/matches', arguments: competition),
           child: Card(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

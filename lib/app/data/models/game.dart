@@ -1,15 +1,30 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'game.g.dart';
+
+@HiveType(typeId: 2)
 class Game {
+  @HiveField(0)
   final String gameId;
+  @HiveField(1)
   final String time1;
+  @HiveField(2)
   final String idTime1;
+  @HiveField(3)
   final int placarTime1;
+
+  @HiveField(4)
   final String time2;
+  @HiveField(5)
   final String idTime2;
+  @HiveField(6)
   final int placarTime2;
+  @HiveField(7)
   final String status;
+  @HiveField(8)
   final DateTime dateGame;
   Game({
     required this.gameId,

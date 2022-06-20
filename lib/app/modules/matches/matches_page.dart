@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+
 import '../../core/widgets/error.dart';
 import '../../core/widgets/loading.dart';
 import '../../core/widgets/no_data.dart';
 import '../../data/models/championship_model.dart';
 import '../../data/models/competition_model.dart';
-import 'controller/leagues_controller.dart';
+import 'controller/matches_controller.dart';
 import 'widgets/list_matches.dart';
 import 'widgets/list_teams.dart';
 
-class LeaguesPage extends StatefulWidget {
-  final LeaguesController controller;
-  const LeaguesPage({Key? key, required this.controller}) : super(key: key);
+class MatchesPage extends StatefulWidget {
+  final MatchesController controller;
+  const MatchesPage({Key? key, required this.controller}) : super(key: key);
 
   @override
-  State<LeaguesPage> createState() => _LeaguesPageState();
+  State<MatchesPage> createState() => _MatchesPageState();
 }
 
 final PageController _pageController = PageController(
@@ -21,7 +22,7 @@ final PageController _pageController = PageController(
   keepPage: false,
 );
 
-class _LeaguesPageState extends State<LeaguesPage> {
+class _MatchesPageState extends State<MatchesPage> {
   int initialPage = 0;
 
   late Future<Championship?> futureScore;
@@ -35,15 +36,22 @@ class _LeaguesPageState extends State<LeaguesPage> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: (competition?.name == null) ? const SizedBox() : Text(competition!.name),
+        actions: [
+          InkWell(
+            child: Icon(Icons.refresh),
+            onTap: () async {
+              setState(() {
+                initialPage = 0;
+
+                futureScore = widget.controller.getScore(refresh: true);
+              });
+            },
+          ),
+        ],
       ),
       body: FutureBuilder<Championship?>(
           future: futureScore,
