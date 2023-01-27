@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../data/repositories/database/championship/championship_repository_impl_database.dart';
-import '../../data/repositories/rest/splash/splash_repository_impl.dart';
 import 'routes.dart';
 
 class AppRoute extends Route {
@@ -15,8 +14,8 @@ class AppRoute extends Route {
           builder: (context) {
             CompetitionRepositoryImpl.init(restClient: rest);
 
-            // final SplashRepository repository = SplashRepositoryHive.init(database: database);
-            final SplashRepository repository = SplashRepositoryImpl.init(restClient: rest);
+            final SplashRepository repository = SplashRepositoryHive.init(database: database);
+            // final SplashRepository repository = SplashRepositoryImpl.init(restClient: rest);
             final SplashService service = SplashServiceImpl.init(repository: repository);
             final controller = SplashController.init(service: service);
             return SplashPage(controller: controller);
@@ -24,8 +23,8 @@ class AppRoute extends Route {
         );
 
       case '/home':
-        // final repository = CompetitionRepositoryDatabase.init(database: database);
-        final repository = CompetitionRepositoryImpl.init(restClient: rest);
+        final repository = CompetitionRepositoryDatabase.init(database: database);
+        // final repository = CompetitionRepositoryImpl.init(restClient: rest);
         final service = CompetitionServiceImpl.init(repository: repository);
         final controller = HomeController.init(service: service);
         return MaterialPageRoute(
