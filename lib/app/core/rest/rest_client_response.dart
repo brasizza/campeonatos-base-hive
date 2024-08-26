@@ -1,4 +1,3 @@
-
 class RestClientResponse<T> {
   T? data;
   int? statusCode;

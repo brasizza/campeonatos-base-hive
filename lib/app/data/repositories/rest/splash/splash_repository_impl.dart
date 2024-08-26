@@ -1,5 +1,4 @@
 import '../../../../core/rest/rest_client.dart';
-import '../../../../core/routes/routes.dart';
 import '../../splash/splash_export.dart';
 
 class SplashRepositoryImpl implements SplashRepository {

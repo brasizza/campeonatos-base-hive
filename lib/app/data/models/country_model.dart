@@ -58,7 +58,8 @@ class Country extends HiveObject {
 
   String toJson() => json.encode(toMap());
 
-  factory Country.fromJson(String source) => Country.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Country.fromJson(String source) =>
+      Country.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -69,7 +70,11 @@ class Country extends HiveObject {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Country && other.id == id && other.name == name && other.flag == flag && other.prefix == prefix;
+    return other is Country &&
+        other.id == id &&
+        other.name == name &&
+        other.flag == flag &&
+        other.prefix == prefix;
   }
 
   @override

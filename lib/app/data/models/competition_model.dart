@@ -58,7 +58,8 @@ class Competition extends HiveObject {
 
   String toJson() => json.encode(toMap());
 
-  factory Competition.fromJson(String source) => Competition.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Competition.fromJson(String source) =>
+      Competition.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -69,7 +70,11 @@ class Competition extends HiveObject {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Competition && other.id == id && other.link == link && other.name == name && other.country == country;
+    return other is Competition &&
+        other.id == id &&
+        other.link == link &&
+        other.name == name &&
+        other.country == country;
   }
 
   @override

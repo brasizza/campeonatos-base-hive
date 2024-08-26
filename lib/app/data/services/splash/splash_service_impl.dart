@@ -10,7 +10,8 @@ class SplashServiceImpl implements SplashService {
     Developer.logInstance(this);
   }
 
-  factory SplashServiceImpl.init({required SplashRepository repository, bool singleton = false}) {
+  factory SplashServiceImpl.init(
+      {required SplashRepository repository, bool singleton = false}) {
     _repository = repository;
     if (singleton) {
       _instance ??= SplashServiceImpl._(repository: repository);

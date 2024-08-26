@@ -21,10 +21,16 @@ class HttpRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> delete<T>(String path, {data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, Encoding? encoding}) async {
+  Future<RestClientResponse<T>> delete<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers,
+      Encoding? encoding}) async {
     try {
-      Map<String, String>? newHeaders = (headers == null) ? null : headers as Map<String, String>;
-      response = await http.delete(Uri.parse(path), headers: newHeaders, body: data, encoding: encoding);
+      Map<String, String>? newHeaders =
+          (headers == null) ? null : headers as Map<String, String>;
+      response = await http.delete(Uri.parse(path),
+          headers: newHeaders, body: data, encoding: encoding);
       return httpResponseConverter(response);
     } on HttpException catch (e) {
       _throwRestClientException(e, response);
@@ -32,9 +38,12 @@ class HttpRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> get<T>(String path, {Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers}) async {
+  Future<RestClientResponse<T>> get<T>(String path,
+      {Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers}) async {
     try {
-      Map<String, String>? newHeaders = (headers == null) ? null : headers as Map<String, String>;
+      Map<String, String>? newHeaders =
+          (headers == null) ? null : headers as Map<String, String>;
       response = await http.get(Uri.parse(path), headers: newHeaders);
       return httpResponseConverter(response);
     } on HttpException catch (e) {
@@ -43,10 +52,16 @@ class HttpRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> patch<T>(String path, {data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, Encoding? encoding}) async {
+  Future<RestClientResponse<T>> patch<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers,
+      Encoding? encoding}) async {
     try {
-      Map<String, String>? newHeaders = (headers == null) ? null : headers as Map<String, String>;
-      response = await http.patch(Uri.parse(path), headers: newHeaders, body: data, encoding: encoding);
+      Map<String, String>? newHeaders =
+          (headers == null) ? null : headers as Map<String, String>;
+      response = await http.patch(Uri.parse(path),
+          headers: newHeaders, body: data, encoding: encoding);
       return httpResponseConverter(response);
     } on HttpException catch (e) {
       _throwRestClientException(e, response);
@@ -54,10 +69,16 @@ class HttpRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> post<T>(String path, {data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, Encoding? encoding}) async {
+  Future<RestClientResponse<T>> post<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers,
+      Encoding? encoding}) async {
     try {
-      Map<String, String>? newHeaders = (headers == null) ? null : headers as Map<String, String>;
-      response = await http.post(Uri.parse(path), headers: newHeaders, body: data, encoding: encoding);
+      Map<String, String>? newHeaders =
+          (headers == null) ? null : headers as Map<String, String>;
+      response = await http.post(Uri.parse(path),
+          headers: newHeaders, body: data, encoding: encoding);
       return httpResponseConverter(response);
     } on HttpException catch (e) {
       _throwRestClientException(e, response);
@@ -65,10 +86,16 @@ class HttpRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> put<T>(String path, {data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, Encoding? encoding}) async {
+  Future<RestClientResponse<T>> put<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers,
+      Encoding? encoding}) async {
     try {
-      Map<String, String>? newHeaders = (headers == null) ? null : headers as Map<String, String>;
-      response = await http.put(Uri.parse(path), headers: newHeaders, body: data, encoding: encoding);
+      Map<String, String>? newHeaders =
+          (headers == null) ? null : headers as Map<String, String>;
+      response = await http.put(Uri.parse(path),
+          headers: newHeaders, body: data, encoding: encoding);
       return httpResponseConverter(response);
     } on HttpException catch (e) {
       _throwRestClientException(e, response);
@@ -76,17 +103,29 @@ class HttpRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> request<T>(String path, {required String method, data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, Encoding? encoding}) async {
+  Future<RestClientResponse<T>> request<T>(String path,
+      {required String method,
+      data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers,
+      Encoding? encoding}) async {
     try {
-      Map<String, String>? newHeaders = (headers == null) ? null : headers as Map<String, String>;
-      response = await http.post(Uri.parse(path), headers: newHeaders, body: data, encoding: encoding);
+      Map<String, String>? newHeaders =
+          (headers == null) ? null : headers as Map<String, String>;
+      response = await http.post(Uri.parse(path),
+          headers: newHeaders, body: data, encoding: encoding);
       return httpResponseConverter(response);
     } on HttpException catch (e) {
       _throwRestClientException(e, response);
     }
   }
 
-  Future<RestClientResponse<T>> httpResponseConverter<T>(Response response) async => RestClientResponse<T>(data: json.decode(response.body), statusCode: response.statusCode, statusMessage: '');
+  Future<RestClientResponse<T>> httpResponseConverter<T>(
+          Response response) async =>
+      RestClientResponse<T>(
+          data: json.decode(response.body),
+          statusCode: response.statusCode,
+          statusMessage: '');
 
   Never _throwRestClientException(HttpException exception, Response? response) {
     throw RestClientException(

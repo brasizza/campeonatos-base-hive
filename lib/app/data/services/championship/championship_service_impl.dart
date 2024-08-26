@@ -1,7 +1,7 @@
 import '../export/championship.dart';
 
 class ChampionshipServiceImpl implements ChampionshipService {
-  String baseUrl = 'https://www.scorebat.com/api/competition/2/';
+  String baseUrl = 'https://www.scorebat.com/api/competition/';
   @override
   Future<Championship?> getScore(String? link, {bool refresh = false}) async {
     String url = baseUrl + (link ?? '');
@@ -22,7 +22,8 @@ class ChampionshipServiceImpl implements ChampionshipService {
     return _instance!;
   }
 
-  factory ChampionshipServiceImpl.init({required ChampionshipRepository repository, bool singleton = true}) {
+  factory ChampionshipServiceImpl.init(
+      {required ChampionshipRepository repository, bool singleton = true}) {
     _repository = repository;
     if (singleton == true) {
       _instance ??= ChampionshipServiceImpl._(repository: repository);

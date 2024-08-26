@@ -99,7 +99,8 @@ class Team {
 
   String toJson() => json.encode(toMap());
 
-  factory Team.fromJson(String source) => Team.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Team.fromJson(String source) =>
+      Team.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -110,11 +111,30 @@ class Team {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Team && other.team == team && other.teamSlug == teamSlug && other.teamId == teamId && other.teamScId == teamScId && other.index == index && other.matches == matches && other.points == points && other.wins == wins && other.draws == draws && other.loses == loses;
+    return other is Team &&
+        other.team == team &&
+        other.teamSlug == teamSlug &&
+        other.teamId == teamId &&
+        other.teamScId == teamScId &&
+        other.index == index &&
+        other.matches == matches &&
+        other.points == points &&
+        other.wins == wins &&
+        other.draws == draws &&
+        other.loses == loses;
   }
 
   @override
   int get hashCode {
-    return team.hashCode ^ teamSlug.hashCode ^ teamId.hashCode ^ teamScId.hashCode ^ index.hashCode ^ matches.hashCode ^ points.hashCode ^ wins.hashCode ^ draws.hashCode ^ loses.hashCode;
+    return team.hashCode ^
+        teamSlug.hashCode ^
+        teamId.hashCode ^
+        teamScId.hashCode ^
+        index.hashCode ^
+        matches.hashCode ^
+        points.hashCode ^
+        wins.hashCode ^
+        draws.hashCode ^
+        loses.hashCode;
   }
 }

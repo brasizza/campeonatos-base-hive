@@ -21,7 +21,11 @@ class Championship extends HiveObject {
 
   @HiveField(3)
   Competition? competition;
-  Championship({required this.teams, required this.matches, required this.futureMaches, this.competition});
+  Championship(
+      {required this.teams,
+      required this.matches,
+      required this.futureMaches,
+      this.competition});
 
   Championship copyWith({
     List<Team>? teams,
@@ -38,8 +42,11 @@ class Championship extends HiveObject {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'teams': teams.map((x) => x.toMap()).toList(),
-      'matches': (matches == null) ? null : matches!.map((x) => x.toMap()).toList(),
-      'futureMaches': (futureMaches == null) ? null : futureMaches!.map((x) => x.toMap()).toList(),
+      'matches':
+          (matches == null) ? null : matches!.map((x) => x.toMap()).toList(),
+      'futureMaches': (futureMaches == null)
+          ? null
+          : futureMaches!.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -65,16 +72,21 @@ class Championship extends HiveObject {
 
   String toJson() => json.encode(toMap());
 
-  factory Championship.fromJson(String source) => Championship.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Championship.fromJson(String source) =>
+      Championship.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Championship(teams: $teams, matches: $matches, futureMaches: $futureMaches)';
+  String toString() =>
+      'Championship(teams: $teams, matches: $matches, futureMaches: $futureMaches)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Championship && listEquals(other.teams, teams) && listEquals(other.matches, matches) && listEquals(other.futureMaches, futureMaches);
+    return other is Championship &&
+        listEquals(other.teams, teams) &&
+        listEquals(other.matches, matches) &&
+        listEquals(other.futureMaches, futureMaches);
   }
 
   @override
@@ -82,9 +94,15 @@ class Championship extends HiveObject {
 
   factory Championship.fromResponse(responseJson) {
     final championship = Championship(
-      teams: responseJson['standings']['rows'].map<Team>((team) => Team.fromMap(team)).toList(),
-      matches: responseJson['results'].map<Game>((team) => Game.fromMap(team)).toList(),
-      futureMaches: responseJson['fixtures'].map<Game>((team) => Game.fromMap(team)).toList(),
+      teams: responseJson['standings']['rows']
+          .map<Team>((team) => Team.fromMap(team))
+          .toList(),
+      matches: responseJson['results']
+          .map<Game>((team) => Game.fromMap(team))
+          .toList(),
+      futureMaches: responseJson['fixtures']
+          .map<Game>((team) => Game.fromMap(team))
+          .toList(),
     );
 
     return championship;

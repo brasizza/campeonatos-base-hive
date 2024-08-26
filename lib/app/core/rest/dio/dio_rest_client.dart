@@ -20,7 +20,11 @@ class DioRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> delete<T>(String path, {data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, Encoding? encoding}) async {
+  Future<RestClientResponse<T>> delete<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers,
+      Encoding? encoding}) async {
     try {
       final response = await _dio.delete(
         path,
@@ -35,7 +39,9 @@ class DioRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> get<T>(String path, {Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers}) async {
+  Future<RestClientResponse<T>> get<T>(String path,
+      {Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers}) async {
     try {
       final response = await _dio.get(
         path,
@@ -50,7 +56,11 @@ class DioRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> patch<T>(String path, {data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, Encoding? encoding}) async {
+  Future<RestClientResponse<T>> patch<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers,
+      Encoding? encoding}) async {
     try {
       final response = await _dio.patch(
         path,
@@ -65,7 +75,11 @@ class DioRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> post<T>(String path, {data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, Encoding? encoding}) async {
+  Future<RestClientResponse<T>> post<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers,
+      Encoding? encoding}) async {
     try {
       final response = await _dio.post(
         path,
@@ -80,7 +94,11 @@ class DioRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> put<T>(String path, {data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, Encoding? encoding}) async {
+  Future<RestClientResponse<T>> put<T>(String path,
+      {data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers,
+      Encoding? encoding}) async {
     try {
       final response = await _dio.put(
         path,
@@ -95,7 +113,12 @@ class DioRestClient implements RestClient {
   }
 
   @override
-  Future<RestClientResponse<T>> request<T>(String path, {required String method, data, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers, Encoding? encoding}) async {
+  Future<RestClientResponse<T>> request<T>(String path,
+      {required String method,
+      data,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers,
+      Encoding? encoding}) async {
     try {
       final response = await _dio.request(
         path,
@@ -108,7 +131,8 @@ class DioRestClient implements RestClient {
     }
   }
 
-  Future<RestClientResponse<T>> _dioResponseConverter<T>(Response<dynamic> response) async {
+  Future<RestClientResponse<T>> _dioResponseConverter<T>(
+      Response<dynamic> response) async {
     return RestClientResponse<T>(
       data: response.data,
       statusCode: response.statusCode,

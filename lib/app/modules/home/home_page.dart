@@ -10,7 +10,8 @@ import 'widgets/lists_contries.dart';
 class HomePage extends StatefulWidget {
   final HomeController controller;
 
-  const HomePage({Key? key, required this.controller, Object? arguments}) : super(key: key);
+  const HomePage({Key? key, required this.controller, Object? arguments})
+      : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -35,14 +36,16 @@ class _HomePageState extends State<HomePage> {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
               case ConnectionState.waiting:
-                return const LoadingWidgetCustom(text: 'Carregando as competições');
+                return const LoadingWidgetCustom(
+                    text: 'Carregando as competições');
               case ConnectionState.active:
               case ConnectionState.done:
                 if (snapshot.hasError) {
                   return ErrorWidgetCustom(text: snapshot.error.toString());
                 }
                 if (!snapshot.hasData) {
-                  return const NoDataWidgetCustom(text: 'Nenhuma competição encontrada');
+                  return const NoDataWidgetCustom(
+                      text: 'Nenhuma competição encontrada');
                 }
                 return Padding(
                   padding: const EdgeInsets.all(8.0),

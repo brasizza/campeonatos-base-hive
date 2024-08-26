@@ -92,7 +92,8 @@ class Game {
 
   String toJson() => json.encode(toMap());
 
-  factory Game.fromJson(String source) => Game.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Game.fromJson(String source) =>
+      Game.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -103,11 +104,28 @@ class Game {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Game && other.gameId == gameId && other.time1 == time1 && other.idTime1 == idTime1 && other.placarTime1 == placarTime1 && other.time2 == time2 && other.idTime2 == idTime2 && other.placarTime2 == placarTime2 && other.status == status && other.dateGame == dateGame;
+    return other is Game &&
+        other.gameId == gameId &&
+        other.time1 == time1 &&
+        other.idTime1 == idTime1 &&
+        other.placarTime1 == placarTime1 &&
+        other.time2 == time2 &&
+        other.idTime2 == idTime2 &&
+        other.placarTime2 == placarTime2 &&
+        other.status == status &&
+        other.dateGame == dateGame;
   }
 
   @override
   int get hashCode {
-    return gameId.hashCode ^ time1.hashCode ^ idTime1.hashCode ^ placarTime1.hashCode ^ time2.hashCode ^ idTime2.hashCode ^ placarTime2.hashCode ^ status.hashCode ^ dateGame.hashCode;
+    return gameId.hashCode ^
+        time1.hashCode ^
+        idTime1.hashCode ^
+        placarTime1.hashCode ^
+        time2.hashCode ^
+        idTime2.hashCode ^
+        placarTime2.hashCode ^
+        status.hashCode ^
+        dateGame.hashCode;
   }
 }

@@ -24,7 +24,8 @@ class MatchesController {
   }
 
   Future<Championship?> getScore({bool refresh = false}) async {
-    return await _service.getScore(_competition?.link ?? '', refresh: refresh);
+    return await _service.getScore(_competition?.id.toString() ?? '',
+        refresh: refresh);
     // return championship;
   }
 }

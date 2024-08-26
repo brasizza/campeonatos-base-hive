@@ -13,12 +13,15 @@ class ChampionshipRepositoryDatabase implements ChampionshipRepository {
       final score = await repo.getScore(url, refresh: refresh);
       if (score != null) {
         score.competition = match.competition;
-        await _database.insert<Championship>(tableName: 'championship', value: score);
+        await _database.insert<Championship>(
+            tableName: 'championship', value: score);
         return score;
       }
     } else {
-      final existChampionship = champs.firstWhere((champ) => champ.competition == match.competition, orElse: () {
-        return Championship(teams: [], matches: [], futureMaches: [], competition: null);
+      final existChampionship = champs.firstWhere(
+          (champ) => champ.competition == match.competition, orElse: () {
+        return Championship(
+            teams: [], matches: [], futureMaches: [], competition: null);
       }) as Championship;
 
       if (refresh == true && existChampionship.teams.isNotEmpty) {
@@ -32,7 +35,8 @@ class ChampionshipRepositoryDatabase implements ChampionshipRepository {
         final score = await repo.getScore(url, refresh: refresh);
         if (score != null) {
           score.competition = match.competition;
-          await _database.insert<Championship>(tableName: 'championship', value: score);
+          await _database.insert<Championship>(
+              tableName: 'championship', value: score);
           return score;
         }
       } else {

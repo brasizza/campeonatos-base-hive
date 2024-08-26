@@ -15,7 +15,11 @@ class ListCountries extends StatelessWidget {
       itemBuilder: ((context, index) {
         final pais = paises[index];
         return InkWell(
-          onTap: () => Navigator.pushNamed(context, '/competitions', arguments: {'competitions': competitions?[pais], 'country': pais}),
+          onTap: () => Navigator.pushNamed(context, '/competitions',
+              arguments: {
+                'competitions': competitions?[pais],
+                'country': pais
+              }),
           child: Card(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +35,8 @@ class ListCountries extends StatelessWidget {
                     ? const SizedBox.shrink()
                     : Image.network(
                         pais.flag!,
-                        errorBuilder: (context, error, stackTrace) => const Text('Sem bandeira.'),
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Text('Sem bandeira.'),
                       )
               ],
             ),

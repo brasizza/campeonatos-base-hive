@@ -6,7 +6,8 @@ class TeamWidget extends StatelessWidget {
   final Game game;
   final int team;
 
-  const TeamWidget({Key? key, required this.game, required this.team}) : super(key: key);
+  const TeamWidget({Key? key, required this.game, required this.team})
+      : super(key: key);
 
   final String urlLogos = 'https://s3.amazonaws.com/bookmkrs/img/logos/mini/';
 
@@ -19,7 +20,8 @@ class TeamWidget extends StatelessWidget {
         style: const TextStyle(fontWeight: FontWeight.bold),
         softWrap: true,
       ),
-      Image.network(urlLogos + logo, errorBuilder: ((context, error, stackTrace) {
+      Image.network(urlLogos + logo,
+          errorBuilder: ((context, error, stackTrace) {
         return const SizedBox.shrink();
       }))
     ]);

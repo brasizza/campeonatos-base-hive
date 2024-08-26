@@ -13,7 +13,8 @@ class ListCompetition extends StatelessWidget {
       itemBuilder: ((context, index) {
         final competition = competitions[index];
         return InkWell(
-          onTap: () => Navigator.pushNamed(context, '/matches', arguments: competition),
+          onTap: () =>
+              Navigator.pushNamed(context, '/matches', arguments: competition),
           child: Card(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +36,8 @@ class ListCompetition extends StatelessWidget {
                     ? const SizedBox.shrink()
                     : Image.network(
                         competition.country.flag!,
-                        errorBuilder: (context, error, stackTrace) => const Text('Sem bandeira.'),
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Text('Sem bandeira.'),
                       )
               ],
             ),

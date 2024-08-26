@@ -28,7 +28,8 @@ class ListMatches extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Expanded(child: SizedBox(child: TeamWidget(game: game, team: 1))),
+                  Expanded(
+                      child: SizedBox(child: TeamWidget(game: game, team: 1))),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -46,12 +47,14 @@ class ListMatches extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        Utils.formatDate(game.dateGame.toIso8601String(), splitHour: true),
+                        Utils.formatDate(game.dateGame.toIso8601String(),
+                            splitHour: true),
                         textAlign: TextAlign.center,
                       )
                     ],
                   ),
-                  Expanded(child: SizedBox(child: TeamWidget(game: game, team: 2))),
+                  Expanded(
+                      child: SizedBox(child: TeamWidget(game: game, team: 2))),
                 ],
               ),
             ),

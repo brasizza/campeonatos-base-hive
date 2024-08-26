@@ -39,7 +39,9 @@ class _MatchesPageState extends State<MatchesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: (competition?.name == null) ? const SizedBox() : Text(competition!.name),
+        title: (competition?.name == null)
+            ? const SizedBox()
+            : Text(competition!.name),
         actions: [
           InkWell(
             child: Icon(Icons.refresh),
@@ -66,7 +68,8 @@ class _MatchesPageState extends State<MatchesPage> {
                   return ErrorWidgetCustom(text: snapshot.error.toString());
                 }
                 if (!snapshot.hasData) {
-                  return const NoDataWidgetCustom(text: 'Nenhuma competição encontrada');
+                  return const NoDataWidgetCustom(
+                      text: 'Nenhuma competição encontrada');
                 }
 
                 return Column(
@@ -77,7 +80,10 @@ class _MatchesPageState extends State<MatchesPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ElevatedButton(
-                              style: ElevatedButton.styleFrom(primary: (initialPage == 0) ? Colors.amber.shade700 : null),
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: (initialPage == 0)
+                                      ? Colors.amber.shade700
+                                      : null),
                               onPressed: () {
                                 _pageController.jumpToPage(0);
                                 setState(() {
@@ -86,7 +92,10 @@ class _MatchesPageState extends State<MatchesPage> {
                               },
                               child: const Text('Tabela')),
                           ElevatedButton(
-                              style: ElevatedButton.styleFrom(primary: (initialPage == 1) ? Colors.amber.shade700 : null),
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: (initialPage == 1)
+                                      ? Colors.amber.shade700
+                                      : null),
                               onPressed: () {
                                 _pageController.jumpToPage(1);
 
@@ -96,7 +105,10 @@ class _MatchesPageState extends State<MatchesPage> {
                               },
                               child: const Text('Próximos')),
                           ElevatedButton(
-                              style: ElevatedButton.styleFrom(primary: (initialPage == 2) ? Colors.amber.shade700 : null),
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: (initialPage == 2)
+                                      ? Colors.amber.shade700
+                                      : null),
                               onPressed: () {
                                 _pageController.jumpToPage(2);
                                 setState(() {

@@ -14,16 +14,19 @@ class AppRoute extends Route {
           builder: (context) {
             CompetitionRepositoryImpl.init(restClient: rest);
 
-            final SplashRepository repository = SplashRepositoryHive.init(database: database);
+            final SplashRepository repository =
+                SplashRepositoryHive.init(database: database);
             // final SplashRepository repository = SplashRepositoryImpl.init(restClient: rest);
-            final SplashService service = SplashServiceImpl.init(repository: repository);
+            final SplashService service =
+                SplashServiceImpl.init(repository: repository);
             final controller = SplashController.init(service: service);
             return SplashPage(controller: controller);
           },
         );
 
       case '/home':
-        final repository = CompetitionRepositoryDatabase.init(database: database);
+        final repository =
+            CompetitionRepositoryDatabase.init(database: database);
         // final repository = CompetitionRepositoryImpl.init(restClient: rest);
         final service = CompetitionServiceImpl.init(repository: repository);
         final controller = HomeController.init(service: service);
@@ -48,10 +51,14 @@ class AppRoute extends Route {
 
       case '/matches':
         final competiton = settings.arguments as Competition;
-        ChampionshipServiceImpl.init(repository: ChampionshipRepositoryImpl.init(restClient: rest));
-        final service = ChampionshipServiceImpl.init(repository: ChampionshipRepositoryDatabase.init(database: database));
+        ChampionshipServiceImpl.init(
+            repository: ChampionshipRepositoryImpl.init(restClient: rest));
+        final service = ChampionshipServiceImpl.init(
+            repository:
+                ChampionshipRepositoryDatabase.init(database: database));
 
-        final controller = MatchesController.init(service: service)..competition = competiton;
+        final controller = MatchesController.init(service: service)
+          ..competition = competiton;
         return MaterialPageRoute(
           builder: (context) {
             return MatchesPage(

@@ -22,7 +22,8 @@ class CompetitionServiceImpl implements CompetitionService {
     return _instance!;
   }
 
-  factory CompetitionServiceImpl.init({required CompetitionRepository repository, bool singleton = true}) {
+  factory CompetitionServiceImpl.init(
+      {required CompetitionRepository repository, bool singleton = true}) {
     _repository = repository;
 
     if (singleton) {

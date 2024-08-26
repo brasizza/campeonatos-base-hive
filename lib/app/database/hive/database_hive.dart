@@ -35,7 +35,8 @@ class DatabaseHive implements Database {
   }
 
   @override
-  Future<void> populateCompetitions(Map<Country, List<Competition>>? competitions) async {
+  Future<void> populateCompetitions(
+      Map<Country, List<Competition>>? competitions) async {
     if (competitions != null) {
       for (var competitions in competitions.values.toList()) {
         for (var competition in competitions) {

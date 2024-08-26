@@ -26,7 +26,8 @@ class SplashRepositoryHive implements SplashRepository {
   @override
   Future<void> populateCompetitions() async {
     if (_database != null) {
-      final competitionService = CompetitionServiceImpl.init(repository: CompetitionRepositoryImpl.instance);
+      final competitionService = CompetitionServiceImpl.init(
+          repository: CompetitionRepositoryImpl.instance);
       final competitions = await competitionService.getCompetitions();
       if (competitions != null) {
         await _database!.openDatabase('project');
